@@ -22,3 +22,16 @@ after_success:
     - docker push ordaniel/docker-workshop-multi-nginx
     - docker push ordaniel/docker-workshop-multi-server
     - docker push ordaniel/docker-workshop-multi-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "milti-docker"
+    env: "MultiDocker-env"
+    bucket_name: "elasticbeanstalk-us-east-2-985175771782"
+    bucket_path: "multi-docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_KEY
